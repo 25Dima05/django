@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>
+        {% if page_type == 'live' %}
+            Идущие сейчас
+        {% elif page_type == 'future' %}
+            Будущие
+        {% else %}
+            Все
+        {% endif %} матчи
+    </h1>
+
+    {% if matches %}
+        <div>
+            {% for match in matches %}
+                <div>
+                    <p>{{ match.home_team }} vs {{ match.away_team }}</p>
+                    <p></p>Начало: {{ match.start_time|date:"d.m.Y H:i" }}</p>
+
+                    {% if match.end_time %}
+                        Окончание: {{ match.end_time|date:"H:i" }}
+                    {% endif %}
+
+                    {% if match.score %}
+                        Счёт: {{ match.score }}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>
+            {% if page_type == 'live' %}
+                Нет текущих матчей
+            {% elif page_type == 'future' %}
+                Нет будущих матчей
+            {% else %}
+                Список пуст
+            {% endif %}
+        </p>
+    {% endif %}
+</body>
+</html>
