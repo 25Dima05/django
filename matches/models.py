@@ -1,7 +1,18 @@
 from django.db import models
 
+class SportTournament(models.Model):
+    name = models.CharField(max_length=200)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField(null=True, blank=True)
+
 class Match(models.Model):
     location = models.CharField(max_length=200)
+    tournament = models.ForeignKey(
+        SportTournament,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+    )
     start_time = models.DateTimeField()
     end_time = models.DateTimeField(null=True, blank=True)
     team_1 = models.CharField(max_length=100)

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>{{ match.team_1 }} vs {{ match.team_2 }}</h1>
+
+    {% if match.tournament %}
+        <div>
+            ---
+            <p>Турнир: {{ match.tournament.name }}</p>
+            <p>Период проведения:
+                {{ match.tournament.start_date|date:"d.m.Y" }} — {{ match.tournament.end_date|date:"d.m.Y" }}
+            </p>
+            ---
+        </div>
+    {% endif %}
+
+    <p><strong>Дата и время:</strong> {{ match.start_time|date:"d.m.Y H:i" }} — {{ match.end_time|date:"d.m.Y H:i" }}</p>
+    <p><strong>Место:</strong> {{ match.location }}</p>
+
+    {% if match.score_team_1 %}
+        <p><strong>Счёт:</strong> {{ match.score_team_1 }} - {{ match.score_team_2 }}</p>
+
+    {% else %}
+        <p>Счёт ещё не известен.</p>
+
+    {% endif %}
+
+</body>
+</html>

@@ -17,18 +17,20 @@
     {% if matches %}
         <div>
             {% for match in matches %}
+            ///
                 <div>
-                    <p>{{ match.home_team }} vs {{ match.away_team }}</p>
+                    <p>{{ match.team_1 }} vs {{ match.team_2 }}</p>
                     <p></p>Начало: {{ match.start_time|date:"d.m.Y H:i" }}</p>
 
                     {% if match.end_time %}
                         Окончание: {{ match.end_time|date:"H:i" }}
                     {% endif %}
 
-                    {% if match.score %}
-                        Счёт: {{ match.score }}
+                    {% if match.score_team_1 %}
+                        <p>Счёт: {{ match.score_team_1 }} - {{ match.score_team_2 }}</p>
                     {% endif %}
                 </div>
+                <p>///</p>
             {% endfor %}
         </ul>
     {% else %}
